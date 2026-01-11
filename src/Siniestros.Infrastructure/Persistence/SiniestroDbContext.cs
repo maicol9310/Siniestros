@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Siniestros.Domain.Aggregates;
+using Siniestros.Domain.Entities;
 
 namespace Siniestros.Infrastructure.Persistence
 {

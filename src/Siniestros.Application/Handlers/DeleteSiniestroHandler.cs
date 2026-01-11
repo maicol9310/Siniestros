@@ -10,13 +10,16 @@ namespace Siniestros.Application.Handlers
         : IRequestHandler<DeleteSiniestroCommand, Result>
     {
         private readonly ISiniestroRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<DeleteSiniestroHandler> _logger;
 
         public DeleteSiniestroHandler(
             ISiniestroRepository repository,
+            IUnitOfWork unitOfWork,
             ILogger<DeleteSiniestroHandler> logger)
         {
             _repository = repository;
+            _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
@@ -44,10 +47,10 @@ namespace Siniestros.Application.Handlers
                 return Result.Failure("Siniestro not found");
             }
 
-            await _repository.DeleteAsync(
-                request.Id,
-                cancellationToken
-            );
+            await _repository.DeleteAsync(request.Id, cancellationToken);
+
+            // 🔥 ESTO ES LO QUE TE FALTABA
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             _logger.LogInformation(
                 "Siniestro with Id {SiniestroId} successfully deleted",

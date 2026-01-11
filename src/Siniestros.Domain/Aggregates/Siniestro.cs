@@ -1,22 +1,19 @@
 ﻿using Siniestros.Domain.Enum;
-using System.Diagnostics;
-using System.Net;
-using System.Xml.Linq;
 
 namespace Siniestros.Domain.Aggregates
 {
     public class Siniestro
     {
-        public Guid Id { get; private set; }
-        public DateTime FechaHora { get; private set; }
-        public string Departamento { get; private set; } = null!;
-        public string Ciudad { get; private set; } = null!;
-        public TipoSiniestro Tipo { get; private set; }
-        public int VehiculosInvolucrados { get; private set; }
-        public int NumeroVictimas { get; private set; }
-        public string? Descripcion { get; private set; }
+        public Guid Id { get; set; }
+        public DateTime FechaHora { get; set; }
+        public string Departamento { get; set; } = null!;
+        public string Ciudad { get; set; } = null!;
+        public TipoSiniestro Tipo { get; set; }
+        public int VehiculosInvolucrados { get; set; }
+        public int NumeroVictimas { get; set; }
+        public string? Descripcion { get; set; }
 
-        private Siniestro() { }
+        public Siniestro() { }
 
         public Siniestro(
             DateTime fechaHora,

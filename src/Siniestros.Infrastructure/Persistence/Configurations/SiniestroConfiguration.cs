@@ -22,8 +22,7 @@ namespace Siniestros.Infrastructure.Persistence.Configurations
                 .HasMaxLength(100);
 
             builder.Property(s => s.Tipo)
-                .IsRequired()
-                .HasMaxLength(50);
+                .IsRequired();
 
             builder.Property(s => s.VehiculosInvolucrados)
                 .IsRequired();
