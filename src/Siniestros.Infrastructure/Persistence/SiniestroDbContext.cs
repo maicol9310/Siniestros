@@ -9,11 +9,13 @@ namespace Siniestros.Infrastructure.Persistence
         public SiniestroDbContext(DbContextOptions<SiniestroDbContext> options) : base(options) { }
 
         public DbSet<Siniestro> Siniestros { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new Configurations.SiniestroConfiguration());
+            modelBuilder.ApplyConfiguration(new Configurations.UserConfiguration());
         }
     }
 }

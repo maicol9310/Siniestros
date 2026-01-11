@@ -9,13 +9,16 @@ namespace Siniestros.Infrastructure.UnitOfWork
         private readonly SiniestroDbContext _db;
 
         public ISiniestroRepository Siniestro { get; }
+        public IUserRepository Users { get; }
 
         public UnitOfWork(
             SiniestroDbContext db,
-            ISiniestroRepository siniestroRepository)
+            ISiniestroRepository siniestroRepository,
+            IUserRepository userRepository)
         {
             _db = db;
             Siniestro = siniestroRepository;
+            Users = userRepository;
         }
 
         public Task<int> SaveChangesAsync(CancellationToken ct = default) => _db.SaveChangesAsync(ct);

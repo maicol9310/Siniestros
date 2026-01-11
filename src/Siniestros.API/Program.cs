@@ -7,7 +7,6 @@ using Serilog;
 using Siniestros.Application;
 using Siniestros.Infrastructure.Persistence;
 using System.Text;
-using System.Xml;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -87,6 +86,7 @@ builder.Services.AddValidatorsFromAssembly(typeof(AssemblyMarker).Assembly);
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 builder.Services.AddScoped<Siniestros.Application.Interfaces.ISiniestroRepository, Siniestros.Infrastructure.Repositories.SiniestroRepository>();
+builder.Services.AddScoped<Siniestros.Application.Interfaces.IUserRepository, Siniestros.Infrastructure.Repositories.UserRepository>();
 builder.Services.AddScoped<Siniestros.Application.Interfaces.IUnitOfWork, Siniestros.Infrastructure.UnitOfWork.UnitOfWork>();
 
 builder.Services.AddControllers();
