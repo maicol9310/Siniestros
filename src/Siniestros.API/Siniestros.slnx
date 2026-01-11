@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../Siniestros.Application/Siniestros.Application/Siniestros.Application.csproj" />
+  <Project Path="../Siniestros.Contracts/Siniestros.Contracts.csproj" />
+  <Project Path="../Siniestros.Domain/Siniestros.Domain.csproj" Id="69ea2278-fa77-4370-b56a-02d8bddc73cc" />
+  <Project Path="../Siniestros.Infrastructure/Siniestros.Infrastructure.csproj" Id="1c1ef01e-8711-4468-a5ef-195999a0bc7a" />
+  <Project Path="../Siniestros.SharedKernel/Siniestros.SharedKernel.csproj" Id="87179914-cbc9-4cb3-b1b6-2308ab369385" />
+  <Project Path="../Test/Siniestros.Application.Tests/Siniestros.Application.Tests.csproj" Id="a821023f-7cf1-44a8-862a-b6ab70e2aa8b" />
+  <Project Path="Siniestros.API/Siniestros.API.csproj" />
+</Solution>

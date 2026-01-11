@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="src/Siniestros.API/Siniestros.API.csproj" />
+  <Project Path="src/Siniestros.Application/Siniestros.Application.csproj" />
+  <Project Path="src/Siniestros.Contracts/Siniestros.Contracts.csproj" />
+  <Project Path="src/Siniestros.Domain/Siniestros.Domain.csproj" />
+  <Project Path="src/Siniestros.Infrastructure/Siniestros.Infrastructure.csproj" />
+  <Project Path="src/Siniestros.SharedKernel/Siniestros.SharedKernel.csproj" />
+  <Project Path="src/Test/Siniestros.Application.Tests/Siniestros.Application.Tests.csproj" />
+</Solution>
