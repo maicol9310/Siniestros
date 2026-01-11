@@ -1,0 +1,50 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore Backend Solutions
+      run: |
+        dotnet build Siniestros.slnx
+        dotnet restore src/Siniestros.Application/Siniestros.Application.csproj
+        dotnet restore src/Siniestros.Domain/Siniestros.Domain.csproj
+        dotnet restore src/Siniestros.Infrastructure/Siniestros.Infrastructure.csproj
+        dotnet restore src/Siniestros.SharedKernel/Siniestros.SharedKernel.csproj
+        dotnet restore src/Tests/Siniestros.Application.Tests/Siniestros.Application.Tests.csproj
+
+    - name: Build Backend Solutions
+      run: |
+        dotnet build Siniestros.slnx --no-restore --configuration Release
+        dotnet build src/Siniestros.Application/Siniestros.Application.csproj --no-restore --configuration Release
+        dotnet build src/Siniestros.Domain/Siniestros.Domain.csproj --no-restore --configuration Release
+        dotnet build src/Siniestros.Infrastructure/Siniestros.Infrastructure.csproj --no-restore --configuration Release
+        dotnet build src/Siniestros.SharedKernel/Siniestros.SharedKernel.csproj --no-restore --configuration Release
+
+    - name: Prepare TestResults folder
+      run: mkdir -p src/tests/Siniestros.Application.Tests/TestResults
+
+    - name: Run Application Tests
+      run: dotnet test src/tests/Siniestros.Application.Tests/Siniestros.Application.Tests.csproj --verbosity normal --logger "trx;LogFileName=src/tests/Siniestros.Application.Tests/TestResults/test-results.trx"
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: src/Tests/Siniestros.Application.Tests/TestResults/test-results.trx
