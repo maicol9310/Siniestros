@@ -1,7 +1,10 @@
-﻿public enum TipoSiniestro
-{
-    Choque,
-    Atropello,
-    Volcamiento,
-    Otro
+﻿namespace Siniestros.Domain.Enum
+{ 
+    public enum TipoSiniestro
+    {
+        Choque,
+        Atropello,
+        Volcamiento,
+        Otro
+    }
 }
